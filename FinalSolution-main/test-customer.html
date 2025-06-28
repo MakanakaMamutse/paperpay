@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PaperPay Customer QR Tester</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    input, button { padding: 8px; margin: 5px 0; width: 100%; }
+    .qr { margin-top: 20px; text-align: center; }
+    .grants { margin-top: 20px; }
+    .grant { border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>PaperPay Customer QR Tester</h1>
+  
+  <label for="customerId">Customer ID:</label>
+  <input type="text" id="customerId" placeholder="e.g. demo-customer-123" />
+
+  <button onclick="generateQRCode()">Generate QR Code</button>
+
+  <div id="error" style="color: red; margin-top: 10px;"></div>
+
+  <div class="qr" id="qrContainer"></div>
+  <div class="grants" id="grantsContainer"></div>
+
+  <script>
+    const API_URL = "http://localhost:3001";
+
+    async function generateQRCode() {
+      const customerId = document.getElementById("customerId").value.trim();
+      const errorEl = document.getElementById("error");
+      const qrContainer = document.getElementById("qrContainer");
+      const grantsContainer = document.getElementById("grantsContainer");
+
+      errorEl.textContent = "";
+      qrContainer.innerHTML = "";
+      grantsContainer.innerHTML = "";
+
+      if (!customerId) {
+        errorEl.textContent = "Please enter a Customer ID.";
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_URL}/api/customers/${customerId}/qr-code`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" }
+        });
+
+        if (!res.ok) {
+          const data = await res.json();
+          errorEl.textContent = data.error || "Failed to generate QR code.";
+          return;
+        }
+
+        const data = await res.json();
+        qrContainer.innerHTML = `<img src="${data.qrCode}" alt="Customer QR Code" />`;
+
+        if (data.grants && data.grants.length > 0) {
+          data.grants.forEach(grant => {
+            const div = document.createElement("div");
+            div.className = "grant";
+            div.innerHTML = `
+              <strong>Vendor:</strong> ${grant.vendorName}<br>
+              <strong>Daily Limit:</strong> R${grant.dailyLimit.toFixed(2)}<br>
+              <strong>Expires:</strong> ${new Date(grant.expiresAt).toLocaleDateString()}
+            `;
+            grantsContainer.appendChild(div);
+          });
+        } else {
+          grantsContainer.innerHTML = "<p>No grants found.</p>";
+        }
+
+      } catch (err) {
+        errorEl.textContent = "Error contacting API.";
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>

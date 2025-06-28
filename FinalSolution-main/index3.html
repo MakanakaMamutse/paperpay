@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Instant Buy Tester</title>
+</head>
+<body>
+  <h1>Instant Buy Test</h1>
+
+  <input id="receiverWalletAddress" type="text" placeholder="Receiver wallet address"><br><br>
+  <input id="manageUrl" type="text" placeholder="Manage URL"><br><br>
+  <input id="previousToken" type="text" placeholder="Previous Access Token"><br><br>
+  <button onclick="doInstantBuy()">Do Instant Buy</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    async function doInstantBuy() {
+      const receiverWalletAddress = document.getElementById("receiverWalletAddress").value;
+      const manageUrl = document.getElementById("manageUrl").value;
+      const previousToken = document.getElementById("previousToken").value;
+
+      const response = await fetch("/api/instant-buy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ receiverWalletAddress, manageUrl, previousToken })
+      });
+      const data = await response.json();
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
