@@ -1,73 +1,119 @@
-# Welcome to your Lovable project
+# PaperPay+
 
-## Project info
+Safe Cashless Daily Payments with QR Cards + Interledger
 
-**URL**: https://lovable.dev/projects/5f938924-c8bd-41e8-bd13-2c8b446f9747
+## 🚨 The Problem
 
-## How can I edit this code?
+In South Africa, carrying cash for taxis, groceries, and daily essentials is unsafe, especially in cities like Johannesburg where muggings and theft are common. While debit cards are an alternative, fewer than 30% of SMMEs (small businesses) have POS machines — but over 90% of people and vendors own smartphones. We need a practical, low-tech solution.
 
-There are several ways of editing your application.
+## 💡 Our Solution
 
-**Use Lovable**
+PaperPay+ gives people personalized printed QR codes, linked to their Interledger-enabled wallets:
+- Users carry a QR card on a lanyard or keychain
+- Vendors scan QR codes on their smartphones to receive payment instantly via Interledger
+- Daily spending limits protect users in case of theft — they can only lose what's allowed per day
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5f938924-c8bd-41e8-bd13-2c8b446f9747) and start prompting.
+## ✅ Why Interledger?
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Open & Borderless Payments**: Vendors and customers don't need the same bank or payment service
+- **Low-Cost Microtransactions**: Perfect for small amounts like taxi fares
+- **Hackathon Ready**: Robust APIs for rapid integration and live demonstration
+- **Scalable**: Supports diverse wallets, grants, or employer funding streams
 
-**Use your preferred IDE**
+## 🚀 Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js (v14 or higher)
+- npm or yarn
+- An Interledger/Open Payments-compatible wallet
 
-Follow these steps:
+### Installation & Setup
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd paperpay
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. **Run the backend**
+   ```bash
+   cd final-solution-main
+   npm install
+   npm run dev
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+4. **Run the frontend (in a new terminal)**
+   ```bash
+   npm run dev
+   ```
 
-**Edit a file directly in GitHub**
+5. **Open your browser**
+   Navigate to `http://localhost:3000` to access the application
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 👤 Customer Features
 
-**Use GitHub Codespaces**
+- **Wallet Integration**: Compatible with Interledger/Open Payments wallets
+- **QR Code Generation**: Register and generate unique QR codes
+- **Security**: Set daily spending limits for protection
+- **Management**: Regenerate QR codes if lost/stolen
+- **Balance Overview**: Monitor wallet balance and transactions
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🍭 Vendor Features
 
-## What technologies are used for this project?
+- **QR Scanner**: Web app with smartphone camera integration
+- **Payment Processing**: Enter amount + description for transactions
+- **Instant Settlement**: Debit customer and credit vendor via Interledger
+- **Transaction History**: Complete bookkeeping and logs
 
-This project is built with:
+## 📱 The App
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Our progressive web app (PWA) includes:
 
-## How can I deploy this project?
+### Customer Portal
+- Balance overview
+- Set/reset daily limits
+- Generate/replace QR codes
+- Freeze lost QR cards
 
-Simply open [Lovable](https://lovable.dev/projects/5f938924-c8bd-41e8-bd13-2c8b446f9747) and click on Share -> Publish.
+### Vendor Portal
+- Scan QR code
+- Enter amount + description
+- Process payments
+- View transaction logs
 
-## Can I connect a custom domain to my Lovable project?
+## 📊 Why It's Effective
 
-Yes, you can!
+- **Inclusive**: Works without a bank account or debit card
+- **Safe**: Limits exposure by capping daily spending
+- **Simple**: Vendors only need a phone, no POS required
+- **Practical**: Uses existing infrastructure (smartphones)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🎭 Demo Usage
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Perfect for demonstrating taxi payments, grocery purchases, and daily transactions with enhanced security through daily spending limits.
+
+## 🔧 API Integration
+
+Built with Interledger Protocol for seamless cross-wallet transactions and micropayments.
+
+## 📄 License
+
+[Add your license here]
+
+## 🤝 Contributing
+
+[Add contribution guidelines here]
+
+## 📞 Support
+
+[Add contact information here]
+
+---
+
+**PaperPay+**: The safe, cashless daily payment system using QR cards and Interledger — empowering people with instant, secure, and inclusive transactions, without the risks of carrying cash.
